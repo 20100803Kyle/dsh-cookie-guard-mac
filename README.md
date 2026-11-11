@@ -60,7 +60,7 @@ Windows 上 Cookie 库是强制锁，`open(db, 'r+')` 失败基本等于「DSH �
 ```bash
 dsh plugin --profile desktop add /path/to/dsh-cookie-guard-mac
 # 或装打包好的 tgz
-dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.1.1.tgz
+dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.1.3.tgz
 ```
 
 装完**重启一次 DSH**，插件才会加载、清理器才会挂上。
@@ -70,9 +70,16 @@ dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.1.1.tgz
 插件注册了一个工具 `cookie_guard`：
 
 - `cookie_guard(action: "status")` —— 看 Cookie 库在哪、有几条 `dsh-auth-*`、离 16 KB 还有多远、清理器在不在跑；
-- `cookie_guard(action: "clean")` —— DSH 正在跑就排到退出后清；已经退出就立刻清。
+- `cookie_guard(action: "clean")` —— DSH 正在跑就排到退出后清；已经退出就立刻清；
+- `cookie_guard(action: "report")` —— 生成一份可视化 HTML 报告并自动打开。
 
 也可以完全不管它：启动时挂上、退出时清理，是自动的。
+
+### 可视化报告
+
+`report` 会在 profile 目录生成 `cookie-guard-report.html`：当前 `dsh-auth-*` 条数、16 KB 请求头用掉多少、离 431 还差几条、每个 Cookie 库的明细，以及从 `cookie-guard.log` 解析出的清理时间线（谁在什么时候删了几条）。
+
+单文件、无外部资源、无网络请求，双击就能看，也能直接发出去当证据。报告只读库和日志，不写数据。
 
 日志与 pid 文件：
 

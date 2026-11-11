@@ -1,6 +1,6 @@
 {
   "name": "dsh-cookie-guard-mac",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "DeepSeek Harness Desktop appends one dsh-auth-* login cookie per launch and never cleans them; after ~70 launches the Cookie header passes 16 KB and the app answers 431 (Web authentication failed). This bundle detaches a cleaner when the Host starts and prunes those cookies as soon as the app exits. macOS first (Windows path also supported).",
   "type": "module",
   "main": "lib/index.js",
