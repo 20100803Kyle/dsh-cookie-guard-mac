@@ -60,7 +60,7 @@ Windows 上 Cookie 库是强制锁，`open(db, 'r+')` 失败基本等于「DSH �
 ```bash
 dsh plugin --profile desktop add /path/to/dsh-cookie-guard-mac
 # 或装打包好的 tgz
-dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.1.3.tgz
+dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.2.0.tgz
 ```
 
 装完**重启一次 DSH**，插件才会加载、清理器才会挂上。
@@ -80,6 +80,16 @@ dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.1.3.tgz
 `report` 会在 profile 目录生成 `cookie-guard-report.html`：当前 `dsh-auth-*` 条数、16 KB 请求头用掉多少、离 431 还差几条、每个 Cookie 库的明细，以及从 `cookie-guard.log` 解析出的清理时间线（谁在什么时候删了几条）。
 
 单文件、无外部资源、无网络请求，双击就能看，也能直接发出去当证据。报告只读库和日志，不写数据。
+
+### 左侧栏看板
+
+装好之后 DSH 左侧栏会多一个「Cookie 清理」图标，点开就是同款看板：状态、四个数字、16 KB 预算条、每个库的明细、清理时间线。数据来自 Host 注册的 `GET /api/cookie-guard/snapshot`（owner-only，只有本机的 DSH 页面拿得到），页面每 15 秒刷新一次，也能手动刷新。
+
+- **每次启动自动打开**：默认开启，页脚有开关（存在浏览器 `localStorage`，关掉后只保留左侧栏入口）；
+- **返回对话**：看板右上角，或直接点左侧栏里的会话；
+- 看板只读 Cookie 库和日志，不改任何数据；HTML 报告（`report`)仍然保留，适合截图、存档、发给别人。
+
+这是插件的浏览器半侧（`lib/client.js`，导出 `./client`），需要 0.2.0 及以上版本。
 
 日志与 pid 文件：
 
