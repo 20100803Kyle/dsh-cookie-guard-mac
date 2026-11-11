@@ -1,0 +1,6 @@
+node_modules/
+*.tgz
+.DS_Store
+*.guard.pid
+*.guard.log
+npm-debug.log*
