@@ -60,7 +60,7 @@ Windows 上 Cookie 库是强制锁，`open(db, 'r+')` 失败基本等于「DSH �
 ```bash
 dsh plugin --profile desktop add /path/to/dsh-cookie-guard-mac
 # 或装打包好的 tgz
-dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.2.0.tgz
+dsh plugin --profile desktop add file:/path/to/dsh-cookie-guard-mac-0.2.2.tgz
 ```
 
 装完**重启一次 DSH**，插件才会加载、清理器才会挂上。
